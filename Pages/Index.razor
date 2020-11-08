@@ -1,7 +1,33 @@
 ﻿@page "/"
+@using BlazorApp1.Data.Movies
 
-<h1>Hello, world!</h1>
+<div>
+    <h3>Movies</h3>
+    @foreach (var m in movies)
 
-Welcome to your new app.
-
+    {
+        <p>Title: @m.Title</p>
+        <p>Genre: @m.Genre</p>
+        <p>Release Date: @m.ReleaseDate</p>
+    }
+</div>
 <SurveyPrompt Title="How is Blazor working for you?" />
+
+
+
+@code{
+
+    List<Movie> movies;
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+
+        movies = new List<Movie>();
+
+        movies.Add(new Movie() { Title = "Avenger", Genre = "Fiction", ReleaseDate = 2020 });
+        movies.Add(new Movie() { Title = "Titanic", Genre = "Drama", ReleaseDate = 2000 });
+
+
+    }
+}
